@@ -1,10 +1,13 @@
 """Config flow for the Russound RNET Local integration."""
 from __future__ import annotations
 
+import logging
 import socket
 from typing import Any
 
 import voluptuous as vol
+
+_LOGGER = logging.getLogger(__name__)
 
 from homeassistant import config_entries
 from homeassistant.core import HomeAssistant
@@ -43,7 +46,8 @@ class RussoundLocalConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             self._abort_if_unique_id_configured()
             try:
                 await _can_connect(self.hass, host, port)
-            except OSError:
+            except OSError as err:
+                _LOGGER.warning("Cannot connect to %s:%s: %s", host, port, err)
                 errors["base"] = "cannot_connect"
             else:
                 return self.async_create_entry(title="Russound RNET (Local)", data=user_input)

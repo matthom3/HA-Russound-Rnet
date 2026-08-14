@@ -1,0 +1,49 @@
+set_power:
+  name: Set zone power
+  description: >-
+    Send a power on/off frame directly over RNET to a zone, bypassing
+    aiorussound's write path (which silently drops this command for every
+    zone but the first declared one).
+  fields:
+    zone:
+      name: Zone
+      description: "1-based zone number (1=Deck, 2=Dining, 3=Patio, 4=Hot Tub, 5=Firepit)."
+      required: true
+      selector:
+        number:
+          min: 1
+          max: 5
+          mode: box
+    power:
+      name: Power
+      description: True to turn the zone on, false to turn it off.
+      required: true
+      selector:
+        boolean:
+
+set_volume:
+  name: Set zone volume
+  description: >-
+    Send a volume frame directly over RNET to a zone, bypassing
+    aiorussound's write path (which silently drops this command for every
+    zone but the first declared one).
+  fields:
+    zone:
+      name: Zone
+      description: "1-based zone number (1=Deck, 2=Dining, 3=Patio, 4=Hot Tub, 5=Firepit)."
+      required: true
+      selector:
+        number:
+          min: 1
+          max: 5
+          mode: box
+    volume_level:
+      name: Volume level
+      description: Target volume as a fraction from 0.0 to 1.0, matching media_player's volume_level.
+      required: true
+      selector:
+        number:
+          min: 0
+          max: 1
+          step: 0.01
+          mode: slider

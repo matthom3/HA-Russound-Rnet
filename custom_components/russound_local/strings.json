@@ -1,0 +1,20 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Russound RNET (Local)",
+        "description": "Direct TCP connection to the Global Cache iTach IP2SL bridge, used only to write power and volume commands for the zones configured in this integration.",
+        "data": {
+          "host": "Host",
+          "port": "Port"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect. Check the host and port."
+    },
+    "abort": {
+      "already_configured": "This host and port is already configured"
+    }
+  }
+}
